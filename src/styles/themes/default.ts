@@ -1,0 +1,15 @@
+export const defaultTheme = {
+  'green-dark': '#015F43',
+  'green-light': '#00B37E',
+  green: '#00875f',
+  red: '#f75a68',
+  'red-dark': '#aa2834',
+  gray1: '#121214',
+  gray2: '#202024',
+  gray3: '#29292e',
+  gray4: '#323238',
+  gray5: '#7c7c8a',
+  gray6: '#c4c4cc',
+  gray7: '#e1e1e6',
+  white: '#ffffff',
+} as const
