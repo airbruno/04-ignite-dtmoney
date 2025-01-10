@@ -6,7 +6,7 @@ export function SearchBar() {
     <SearchBarContainer>
       <SearchInput placeholder="Busque uma transação" />
       <SearchButton>
-        <MagnifyingGlass size={20} color="#00B37E" />
+        <MagnifyingGlass size={20} />
         Buscar
       </SearchButton>
     </SearchBarContainer>

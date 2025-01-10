@@ -42,4 +42,19 @@ export const SearchButton = styled.button`
   border-radius: 6px;
   background: ${(props) => props.theme.gray2};
   color: ${(props) => props.theme['green-light']};
+
+  svg {
+    color: ${(props) => props.theme.green};
+  }
+
+  &:hover,
+  &:focus {
+    background: ${(props) => props.theme.green};
+    color: ${(props) => props.theme.white};
+    border: 1px solid ${(props) => props.theme.green};
+
+    svg {
+      color: ${(props) => props.theme.white};
+    }
+  }
 `

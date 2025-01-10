@@ -28,8 +28,9 @@ export const NewTransactionButton = styled.button`
   justify-content: center;
   align-items: center;
 
-  &:hover {
-    background: ${(props) => props.theme['green-dark']};
+  &:hover,
+  &:focus {
+    background: ${(props) => props.theme['green-light']};
     transition: background-color 0.2s;
   }
 `

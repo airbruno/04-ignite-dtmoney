@@ -11,9 +11,14 @@ export const GlobalStyle = createGlobalStyle`
     background: ${(props) => props.theme.gray2};
     -webkit-font-smoothing: antialiased;
     font: 400 1rem/1.6 'Roboto', sans-serif;
+    color:${(props) => props.theme.gray6};
   }
 
-  button, input {
-    outline: none;
+  input {
+    outline: ${(props) => props.theme['green-light']};
+  }
+
+  button {
+    outline: ${(props) => props.theme['green-dark']};
   }
 `
