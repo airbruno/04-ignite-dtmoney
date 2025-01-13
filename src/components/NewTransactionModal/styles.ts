@@ -97,8 +97,12 @@ export const CloseButton = styled(Dialog.Close)`
   svg {
     color: ${(props) => props.theme.gray5};
   }
+  &:disabled {
+    opacity: 0.7;
+    cursor: wait;
+  }
 
-  &:hover,
+  &:not(:disabled):hover,
   &:focus {
     svg {
       color: ${(props) => props.theme.gray6};

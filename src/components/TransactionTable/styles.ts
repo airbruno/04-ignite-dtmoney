@@ -38,7 +38,7 @@ export const Pager = styled.nav`
   gap: 1rem;
   margin: 2.5rem auto 2.5rem auto;
 
-  span {
+  button {
     background: ${(props) => props.theme.gray4};
     color: ${(props) => props.theme.gray7};
     height: 2.5rem;
