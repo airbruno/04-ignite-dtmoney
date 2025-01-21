@@ -191,6 +191,14 @@
       "type": "income",
       "createdAt": "Mon Jan 13 2025",
       "id": "ei8fazr"
+    },
+    {
+      "description": "TESTE",
+      "value": 20,
+      "category": "TEste",
+      "type": "income",
+      "createdAt": "Fri Jan 17 2025",
+      "id": "39VY84s"
     }
   ]
 }

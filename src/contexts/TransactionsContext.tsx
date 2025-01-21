@@ -1,8 +1,10 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
-import { api } from '../lib/axios'
+import { collection, getDocs, setDoc, doc } from 'firebase/firestore/lite'
+import { v4 as uuidv4 } from 'uuid'
+import { db } from '../utils/firebase'
 
 export interface ITransaction {
-  id?: number
+  id: string
   description: string
   type: 'income' | 'outcome'
   value: number
@@ -33,32 +35,39 @@ export const TransactionsContext = createContext({} as ITransactionsContext)
 export function TransactionsProvider({ children }: ITransactionsProviderProps) {
   const [transactions, setTransactions] = useState<ITransaction[]>([])
 
-  async function getTransactions(query?: string) {
+  async function createTransaction(data: TransactionData) {
+    const transactionsRef = collection(db, 'transactions')
     try {
-      const response = await api.get('transactions', {
-        params: {
-          _sort: 'createdAt',
-          _order: 'desc',
-          q: query,
-        },
-      })
-      setTransactions(response.data)
-    } catch (error) {
-      console.log(error)
+      const id = uuidv4()
+      const newTransaction: ITransaction = {
+        id,
+        description: data.description,
+        value: data.value,
+        category: data.category,
+        type: data.type,
+        createdAt: new Date().toDateString(),
+      }
+
+      await setDoc(doc(transactionsRef, id), newTransaction)
+      console.log('Document written with ID: ', id)
+      setTransactions((state) => [...state, newTransaction])
+    } catch (e) {
+      console.error('Error adding document: ', e)
+      alert('Error adding document: ' + e)
     }
   }
 
-  async function createTransaction(data: TransactionData) {
-    const req = {
-      description: data.description,
-      value: data.value,
-      category: data.category,
-      type: data.type,
-      createdAt: new Date().toDateString(),
+  async function getTransactions() {
+    const querySnapshot = await getDocs(collection(db, 'transactions'))
+    if (querySnapshot.empty) {
+      return
     }
-    const res = await api.post('transactions', req)
-    setTransactions((state) => [data, ...state])
-    console.log(res.status)
+
+    const transactionsFromAPI = querySnapshot.docs.map(
+      (item) => item.data() as ITransaction,
+    )
+
+    setTransactions(transactionsFromAPI)
   }
 
   useEffect(() => {
